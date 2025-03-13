@@ -10,20 +10,28 @@ const shuffle = array => {
 
 // limit to 3 images for now, can expand later
 const cardsArray = [
-  './images/Cherry.png',
-  './images/Lemon.png',
-  './images/Watermelon.png'
+  {
+    name: 'cherry',
+    img: 'images/Cherry.png'
+  },
+  {
+    name: 'lemon',
+    img: 'images/Lemon.png'
+  },
+  {
+    name: 'watermelon',
+    img: 'images/Watermelon.png'
+  }
 ]
 
-let indices = [0, 1, 2]
-indices = [...indices, ...indices]
-shuffle(indices)
+const gameGrid = cardsArray.concat(cardsArray)
 
+shuffle(gameGrid)
 
-indices.forEach(i => {
-  const img = document.createElement('img')
-  img.setAttribute('src', cardsArray[i])
-  img.setAttribute('data-id', i)
-  img.classList.add('card')
-  playArea.appendChild(img)
+gameGrid.forEach(item => {
+  const card = document.createElement('div')
+  card.classList.add('card')
+  card.dataset.name = item.name
+  card.style.backgroundImage = `url(${item.img})`
+  playArea.appendChild(card)
 })

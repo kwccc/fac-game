@@ -2,6 +2,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  text-align: center;
+}
+
 #play-area {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -9,7 +13,12 @@
   width: 80vw;
 }
 
-img {
-  width: 10rem;
-  place-self: center;
+.card {
+  margin: 5px;
+  background-color: #6589f9;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 210px;
+  width: 150px;
 }
