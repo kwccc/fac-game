@@ -59,20 +59,23 @@ const clickCardLogic = (card) => {
       firstGuess = card;
       card.classList.add("selected");
     }
-    if (count === 1 && !card.classList.contains('selected')) {
-      secondGuess = card
-      card.classList.add('selected')
+    if (count === 1 && !card.classList.contains("selected")) {
+      count++;
+      secondGuess = card;
+      card.classList.add("selected");
     }
   }
-  if (firstGuess !== '' && secondGuess !== '') {
-    isMatch(firstGuess, secondGuess)
+  if (firstGuess !== "" && secondGuess !== "") {
+    isMatch(firstGuess, secondGuess);
+    firstGuess = "";
+    secondGuess = "";
   }
 };
 
 playArea.addEventListener("click", (e) => {
   const clicked = e.target;
 
-  if (clicked.nodeName === "DIV") {
+  if (clicked.nodeName === "DIV" && !clicked.classList.contains("match")) {
     clickCardLogic(clicked);
   }
 });
