@@ -1,33 +1,43 @@
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* border: 1px solid red; */
 }
 
 body {
   text-align: center;
 }
 
+#score-box {
+  display: flex;
+  justify-content: center;
+}
+
+#play-area {
+  width: 800px;
+  margin: auto;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  justify-items: center;
 }
 
 .card {
-  margin: 5px;
+  width: 100%;
+  aspect-ratio: 1;
   position: relative;
   transition: all 0.4s linear;
   transform-style: preserve-3d;
 }
 
-.card,
 .cover,
 .face {
-  height: 150px;
-  width: 150px;
-}
-
-.face,
-.cover {
+  /* width: min(150px, 100%);
+  height: min(150px, width); */
+  height: 100%;
+  width: 100%;
   position: absolute;
   backface-visibility: hidden;
 }

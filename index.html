@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
-  <title>Memory game</title>
-</head>
-<body>
-  <h1>Test your memory!</h1>
-  <div id="play-area">
-    <section class="grid"></section>
-  </div>
-  <select name="Board Size" id="board-size">
-    <option value="small">Small</option>
-    <option value="medium">Medium</option>
-    <option value="large">Large</option>
-    <option value="massive">Massive</option>
-  </select>
-  <button type="button">New Game</button>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Memory game</title>
+  </head>
+  <body>
+    <h1>Test your memory!</h1>
+    <h5>Clear the board in the least number of moves!</h5>
+    <h5>Correctly match up fruits to keep them revealed</h5>
+    <div id="score-box">
+      <div>Moves:&nbsp;</div>
+      <div id="score">0</div>
+    </div>
+    <div id="play-area">
+      <section class="grid"></section>
+    </div>
+    <button type="button" id="small">Small</button>
+    <button type="button" id="medium">Medium</button>
+    <button type="button" id="large">Large</button>
+    <button type="button" id="massive">Massive</button>
+    <button type="button" id="new-game">New Game</button>
+  </body>
 </html>
