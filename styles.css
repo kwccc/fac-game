@@ -13,19 +13,26 @@ body {
 }
 
 #play-area {
-  width: 800px;
+  width: min(900px, 95vw);
   margin: auto;
 }
 
 .grid {
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   justify-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .card {
-  width: 100%;
+  /* width: 15%; */
+  /* width: min(100px, 100%); */
+  width: clamp(50px, 100%, 120px);
+  /* flex: 33%; */
   aspect-ratio: 1;
   position: relative;
   transition: all 0.4s linear;

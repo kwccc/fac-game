@@ -16,7 +16,7 @@ const gridSize = [
   { name: "small", size: 3, column: 3, row: 2 },
   { name: "medium", size: 6, column: 4, row: 3 },
   { name: "large", size: 10, column: 5, row: 4 },
-  { name: "massive", size: 15, column: 6, row: 5 }
+  { name: "massive", size: 15, column: 6, row: 5 },
 ];
 
 // limit to 3 images for now, can expand later
@@ -47,6 +47,7 @@ const newGame = () => {
   shuffle(gameGrid);
   assembleGameGrid(gameGrid);
   resetMoves();
+  resetGuesses();
 };
 
 const assembleGameGrid = (array) => {
@@ -75,7 +76,6 @@ let moves = 0;
 const timeout = 1200;
 
 const isMatch = (firstGuess, secondGuess) => {
-  count = 0;
   if (firstGuess.dataset.name === secondGuess.dataset.name) {
     firstGuess.classList.add("match");
     secondGuess.classList.add("match");
@@ -101,8 +101,7 @@ const clickCardLogic = (card) => {
   }
   if (firstGuess !== "" && secondGuess !== "") {
     isMatch(firstGuess, secondGuess);
-    firstGuess = "";
-    secondGuess = "";
+    resetGuesses();
     moves++;
     moveScore.textContent = moves;
   }
@@ -126,6 +125,12 @@ const resetMoves = () => {
   moveScore.textContent = 0;
 };
 
+const resetGuesses = () => {
+  firstGuess = "";
+  secondGuess = "";
+  count = 0;
+};
+
 const newGameButton = document.getElementById("new-game");
 
 newGameButton.addEventListener("click", () => newGame());
@@ -141,7 +146,7 @@ const pickRandomItems = (array, x) => {
 };
 
 const setupGame = (gameSize) => {
-  const sizeConfig = gridSize.find((size) => size.size === gameSize)
+  const sizeConfig = gridSize.find((size) => size.size === gameSize);
   grid.style.gridTemplateColumns = `repeat(${sizeConfig.column}, 1fr)`
   // console.log(sizeConfig.column)
   const newArray = pickRandomItems(cardsArray, gameSize);
@@ -167,5 +172,5 @@ massiveButton.addEventListener("click", () => {
 // const randomArray = pickRandomItems(cardsArray, small)
 
 // console.log(randomArray)
-setupGame(small)
+setupGame(small);
 newGame();
