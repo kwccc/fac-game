@@ -73,12 +73,22 @@ let count = 0;
 let firstGuess = "";
 let secondGuess = "";
 let moves = 0;
+let gameState = 'small'
 const timeout = 1200;
+const bestScoreArray = {
+  small: 0,
+  medium: 0,
+  large: 0,
+  massive: 0,
+};
 
 const isMatch = (firstGuess, secondGuess) => {
   if (firstGuess.dataset.name === secondGuess.dataset.name) {
     firstGuess.classList.add("match");
     secondGuess.classList.add("match");
+    setTimeout(() => {
+      checkGameFinished();
+    }, timeout/3);
   }
   setTimeout(() => {
     firstGuess.classList.remove("selected");
@@ -119,6 +129,7 @@ playArea.addEventListener("click", (e) => {
 });
 
 const moveScore = document.getElementById("score");
+const bestScore = document.getElementById("best-score");
 
 const resetMoves = () => {
   moves = 0;
@@ -147,10 +158,11 @@ const pickRandomItems = (array, x) => {
 
 const setupGame = (gameSize) => {
   const sizeConfig = gridSize.find((size) => size.size === gameSize);
-  grid.style.gridTemplateColumns = `repeat(${sizeConfig.column}, 1fr)`
-  // console.log(sizeConfig.column)
+  gameState = sizeConfig.name
+  grid.style.gridTemplateColumns = `repeat(${sizeConfig.column}, 1fr)`;
   const newArray = pickRandomItems(cardsArray, gameSize);
   gameGrid = newArray.concat(newArray);
+  bestScore.textContent = bestScoreArray[gameState];
   newGame();
 };
 
@@ -169,8 +181,19 @@ largeButton.addEventListener("click", () => {
 massiveButton.addEventListener("click", () => {
   setupGame(massive);
 });
-// const randomArray = pickRandomItems(cardsArray, small)
 
-// console.log(randomArray)
+const checkGameFinished = () => {
+  const matchedCards = document.querySelectorAll(".card.match");
+  if (matchedCards.length === gameGrid.length) {
+    if (moves < bestScore.textContent || bestScoreArray[gameState] === 0) {
+      bestScore.textContent = moves
+      bestScoreArray[gameState] = moves
+      alert("Congratulations! New best score!");
+    } else {
+      alert("Congratulations! You've matched all the cards!");
+    }
+  }
+};
+
 setupGame(small);
 newGame();

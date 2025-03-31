@@ -7,10 +7,17 @@ body {
   text-align: center;
 }
 
-#score-box {
+#stats-box {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#score-box,
+#best-score-box {
   display: flex;
   justify-content: center;
 }
+
 
 #play-area {
   width: min(900px, 95vw);
@@ -18,8 +25,6 @@ body {
 }
 
 .grid {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -29,10 +34,7 @@ body {
 }
 
 .card {
-  /* width: 15%; */
-  /* width: min(100px, 100%); */
   width: clamp(50px, 100%, 120px);
-  /* flex: 33%; */
   aspect-ratio: 1;
   position: relative;
   transition: all 0.4s linear;
@@ -41,8 +43,6 @@ body {
 
 .cover,
 .face {
-  /* width: min(150px, 100%);
-  height: min(150px, width); */
   height: 100%;
   width: 100%;
   position: absolute;
@@ -56,7 +56,6 @@ body {
 
 .face {
   transform: rotateY(180deg);
-  /* background-color: white; */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
